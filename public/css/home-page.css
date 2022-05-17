@@ -1,0 +1,111 @@
+#header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    min-height: 50px;
+    max-height: 50px;
+    align-items: center;
+    justify-content: center;
+    background: rgb(29, 27, 27);
+    display: flex;
+    border-bottom: 3px solid black;
+}
+
+.header-nav {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.logo-img {
+    width: 100px impotant;
+    height: 10px impotant;
+}
+
+.input-label {
+    margin-left: 40px;
+    display: flex;
+}
+
+.search-button {
+    margin-left: 20px;
+}
+
+#main-content {
+    height: 100vh;
+    margin: 0 50px;
+    margin-top: 50px;
+    min-width: 1200px;
+}
+
+.top-preview-goods-li {
+    display: flex;
+    justify-content: space-evenly;
+    min-height: 40vh;
+    max-height: 40vh;
+    margin-bottom: 40px;
+}
+
+.top-preview-goods-li-items {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    min-width: 50vh;;
+    max-width: 50vh;;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.goods-img{
+    max-width: 85%;
+    max-height: 85%;
+    margin: 20px;
+}
+
+
+.main-preview-goods-li {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-preview-goods-li-el {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: 0px solid black;
+    border-top: 1px solid black;
+}
+
+.main-preview-goods-li-el-items {
+    display: flex;
+    margin-bottom: 40px;
+    width: 100%;
+    padding: 5px;
+}
+
+.goods-name {
+    font-size: larger;
+    font-weight: 550;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.goods-list {
+    display: flex;
+}
+
+.goods-price {
+    margin-left: 10%;
+}
+
+.goods-text {
+    max-width: 100%;
+}
+
+.goods-description {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
