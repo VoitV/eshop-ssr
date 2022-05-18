@@ -1,11 +1,13 @@
 #main-content{
     margin-top: 150px;
+    height: auto;
 }
 
 .goods-preview{
     min-height: 40vh;
     max-height: 40vh;
     width: 100%;
+    max-width: 20%;
 }
 
 .goods-preview img {
@@ -30,6 +32,10 @@
 
 .goods-description {
     margin-bottom: 50px;
+}
+
+.description-layout {
+    width: 100%;
 }
 
 .goods-buy-container {

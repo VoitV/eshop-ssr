@@ -16,14 +16,26 @@ hbs.registerPartials(__dirname + "/views/partials");
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", async (req, res) => {
+  const goodsList = await database.queryP(
+    "SELECT g.*,c.ID AS c_id, c.category_name as category FROM goods g LEFT JOIN category c ON g.category_id = c.ID"
+  );
   res.render("pages/home-page", {
     title: "Eshop22",
+    goodsList,
   });
 });
 
-app.get("/goods", async (req, res) => {
+app.get("/goods/:category/:id", async (req, res) => {
+  const params = req.params;
+  params.id = params.id.replace(":", "");
+  params.category = params.category.replace(":", "");
+  const goods = await database.queryP(
+    "SELECT * FROM goods LEFT JOIN category ON goods.category_id = category.ID WHERE goods.ID = ? && category_name = ?",
+    [params.id, params.category]
+  );
   res.render("pages/goods-detailed-page", {
-    title: "Goods",
+    goods: goods[0],
+    title: goods[0].goods_name,
   });
 });
 
