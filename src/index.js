@@ -2,7 +2,8 @@ import path from "path";
 import express from "express";
 import hbs from "hbs";
 import { engine } from "express-handlebars";
-
+import database from "./database.js";
+import bodyParser from "body-parser";
 const __dirname = path.resolve();
 const PORT = 3000;
 const app = express();
@@ -12,14 +13,15 @@ app.set("view engine", "hbs");
 app.set("views", "./views");
 app.use(express.static(__dirname + "/public"));
 hbs.registerPartials(__dirname + "/views/partials");
+app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get("/", (req, res) => {
+app.get("/", async (req, res) => {
   res.render("pages/home-page", {
     title: "Eshop22",
   });
 });
 
-app.get("/goods", (req, res) => {
+app.get("/goods", async (req, res) => {
   res.render("pages/goods-detailed-page", {
     title: "Goods",
   });
