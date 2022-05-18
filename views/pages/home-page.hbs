@@ -16,7 +16,7 @@
             </div>
         </div>
         <div class="main-preview-goods">
-            <div class="main-preview-goods-el">
+            {{!-- <div class="main-preview-goods-el">
                 <div class="goods-name">
                     Техніка
                 </div>
@@ -28,7 +28,19 @@
                     <li><a href="/goods"><img class='goods-img'src="https://m.media-amazon.com/images/I/71v6We6QQcL._AC_SY450_.jpg"/></a></li>
                     <li><a href="/goods"><img class='goods-img'src="https://m.media-amazon.com/images/I/71v6We6QQcL._AC_SY450_.jpg"/></a></li>
                 </ul>
+            </div> --}}
+            {{#each goodsList}}
+            <div class="main-preview-goods-el">
+                <div class="goods-name">
+                    {{this.category}}
+                </div>
+                <ul class="main-preview-goods-el-items">
+                    <li>
+                        <a href="/goods/:{{this.category}}/:{{this.ID}}">{{this.goods_name}}</a>
+                    </li>
+                </ul>
             </div>
+            {{/each}}
     </div>
 </body>
 </html>
