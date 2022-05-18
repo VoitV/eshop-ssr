@@ -19,6 +19,12 @@ app.get("/", (req, res) => {
   });
 });
 
+app.get("/goods", (req, res) => {
+  res.render("pages/goods-detailed-page", {
+    title: "Goods",
+  });
+});
+
 app.use(function (req, res, next) {
   res.statusCode = 404;
   res.render("pages/not-found-page", {
