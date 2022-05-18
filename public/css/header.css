@@ -1,0 +1,33 @@
+#header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    min-height: 50px;
+    max-height: 50px;
+    align-items: center;
+    justify-content: center;
+    background: rgb(29, 27, 27);
+    display: flex;
+    border-bottom: 3px solid black;
+    margin-bottom: 50px;
+}
+
+.header-nav {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.logo-img {
+    width: 100px impotant;
+    height: 10px impotant;
+}
+
+.input-label {
+    margin-left: 40px;
+    display: flex;
+}
+
+.search-button {
+    margin-left: 20px;
+}
