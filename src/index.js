@@ -47,13 +47,14 @@ app.get("/goods/:category/:id", async (req, res) => {
   const params = req.params;
   params.id = params.id.replace(":", "");
   params.category = params.category.replace(":", "");
-  const goods = await database.queryP(
-    "SELECT * FROM goods LEFT JOIN categories ON goods.category_id = categories.ID WHERE goods.ID = ? && categories_name = ?",
+  let goods = await database.queryP(
+    "SELECT g.*,c.ID as categories_id,img.*,img.ID as img_id FROM goods g LEFT JOIN categories c ON g.category_id = c.ID LEFT JOIN goods_img as img ON img.goods_id = g.ID WHERE g.ID = ? && categories_name = ?",
     [params.id, params.category]
   );
+  goods = goods[0];
   res.render("pages/goods-detailed-page", {
-    goods: goods[0],
-    title: goods[0].goods_name,
+    goods,
+    title: goods.goods_name,
   });
 });
 
