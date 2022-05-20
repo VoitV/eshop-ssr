@@ -16,9 +16,27 @@ hbs.registerPartials(__dirname + "/views/partials");
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", async (req, res) => {
-  const goodsList = await database.queryP(
-    "SELECT g.*,c.ID AS c_id, c.category_name as category FROM goods g LEFT JOIN category c ON g.category_id = c.ID"
+  const goods = await database.queryP(
+    "SELECT g.*,c.ID AS c_id, c.categories_name as category, img.ID as goods_img_id, img.img_path as image FROM goods g LEFT JOIN categories c ON g.category_id = c.ID LEFT JOIN goods_img as img ON g.ID = img.goods_id"
   );
+
+  let categories = [];
+
+  for (let i = 0; i < goods.length; i++) {
+    if (categories.includes(goods[i].category)) {
+      continue;
+    } else {
+      categories.push(goods[i].category);
+    }
+  }
+
+  let goodsList = [];
+
+  for (let i = 0; i < categories.length; i++) {
+    let tempArr = goods.filter((el) => el.category == categories[i]);
+    goodsList.push(tempArr);
+  }
+
   res.render("pages/home-page", {
     title: "Eshop22",
     goodsList,
@@ -30,7 +48,7 @@ app.get("/goods/:category/:id", async (req, res) => {
   params.id = params.id.replace(":", "");
   params.category = params.category.replace(":", "");
   const goods = await database.queryP(
-    "SELECT * FROM goods LEFT JOIN category ON goods.category_id = category.ID WHERE goods.ID = ? && category_name = ?",
+    "SELECT * FROM goods LEFT JOIN categories ON goods.category_id = categories.ID WHERE goods.ID = ? && categories_name = ?",
     [params.id, params.category]
   );
   res.render("pages/goods-detailed-page", {
