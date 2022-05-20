@@ -32,7 +32,6 @@
 
 .main-preview-goods-el {
     display: flex;
-    flex-direction: column;
     align-items: center;
     border-bottom: 0px solid black;
     border-top: 1px solid black;
@@ -43,6 +42,7 @@
     margin-bottom: 40px;
     width: 100%;
     padding: 5px;
+    justify-content: center;
 }
 
 .main-preview-goods-el-items li {
@@ -53,6 +53,8 @@
     font-size: larger;
     font-weight: 550;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    display: flex;
+    justify-content: center;
 }
 
 .goods-list {
