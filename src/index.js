@@ -4,6 +4,7 @@ import hbs from "hbs";
 import { engine } from "express-handlebars";
 import database from "./database.js";
 import bodyParser from "body-parser";
+
 const __dirname = path.resolve();
 const PORT = 3000;
 const app = express();
@@ -43,12 +44,38 @@ app.get("/", async (req, res) => {
   });
 });
 
+app.get("/goods/:category", async (req, res) => {
+  let category = req.params.category;
+  category = category.replace(":", "");
+  let categories = await database.queryP(
+    "SELECT categories_name FROM categories"
+  );
+  categories = categories.map((el) => el.categories_name);
+  if (categories.includes(category)) {
+    const goods = await database.queryP(
+      "SELECT g.*,c.ID as categories_id,c.categories_name as category, img.ID as img_id,img.img_name as img_path FROM goods g LEFT JOIN categories c ON g.category_id = c.ID LEFT JOIN goods_img as img ON img.goods_id = g.ID WHERE c.categories_name = ?",
+      [category]
+    );
+    console.log(goods[0]);
+    res.render("pages/goods-category-page", {
+      title: category,
+      goods,
+    });
+  } else {
+    res.statusCode = 404;
+    res.render("pages/not-found-page", {
+      title: "Sorry, page not found",
+      url: req.url,
+    });
+  }
+});
+
 app.get("/goods/:category/:id", async (req, res) => {
   const params = req.params;
   params.id = params.id.replace(":", "");
   params.category = params.category.replace(":", "");
   let goods = await database.queryP(
-    "SELECT g.*,c.ID as categories_id,img.*,img.ID as img_id FROM goods g LEFT JOIN categories c ON g.category_id = c.ID LEFT JOIN goods_img as img ON img.goods_id = g.ID WHERE g.ID = ? && categories_name = ?",
+    "SELECT g.*,c.ID as categories_id,img.ID as img_id,img.img_name as img_path FROM goods g LEFT JOIN categories c ON g.category_id = c.ID LEFT JOIN goods_img as img ON img.goods_id = g.ID WHERE g.ID = ? && categories_name = ?",
     [params.id, params.category]
   );
   goods = goods[0];
