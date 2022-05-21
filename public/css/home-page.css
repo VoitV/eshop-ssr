@@ -57,6 +57,11 @@
     justify-content: center;
 }
 
+.goods-name a {
+    color: black;
+    text-decoration: none;
+}
+
 .goods-list {
     display: flex;
 }

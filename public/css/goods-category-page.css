@@ -1,0 +1,14 @@
+.goods-img{
+    max-width: 85%;
+    max-height: 85%;
+    margin: 20px;
+}
+
+.goods-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.goods-list>* {
+    flex: 1 500px
+}
