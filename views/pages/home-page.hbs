@@ -6,8 +6,18 @@
 </head>
 <body id="page-layout">
     {{> header}}
-    <div id="main-content">
-        <div class="top-preview-goods-layot">
+    <div class="goods-list-container">
+        {{#each goodsList}}
+            <ul class="goods-list"> 
+                <li>
+                    <a href="/goods/{{this.[0].category}}"> {{this.[0].category}}</a>
+                </li>
+            </ul>
+        {{/each}}
+    </div>
+    <div id="main-content-container">
+        <div class="main-content">
+                    <div class="top-preview-goods-layot">
             <div class="top-goods-items">
                 <a href="/goods/PC"><img class='goods-img'src="https://m.media-amazon.com/images/I/71v6We6QQcL._AC_SY450_.jpg"/></a>
             </div>
@@ -35,6 +45,7 @@
             {{/each}}
             </div>
             {{/each}}
+        </div>
     </div>
 </body>
 </html>

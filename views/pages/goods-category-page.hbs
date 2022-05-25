@@ -6,7 +6,10 @@
     </head>
 <body>
     {{> header}}
-    <div id="main-content">
+    <div id="main-content-container">
+        <div class="goods-category-name">
+            {{goods.[0].category}}
+        </div>
         <div class="goods-list">
             {{#each goods}}
             <div class="goods-element" >
