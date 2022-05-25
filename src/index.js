@@ -56,7 +56,7 @@ app.get("/goods/:category", async (req, res) => {
       "SELECT g.*,c.ID as categories_id,c.categories_name as category, img.ID as img_id,img.img_name as img_path FROM goods g LEFT JOIN categories c ON g.category_id = c.ID LEFT JOIN goods_img as img ON img.goods_id = g.ID WHERE c.categories_name = ?",
       [category]
     );
-    console.log(goods[0]);
+
     res.render("pages/goods-category-page", {
       title: category,
       goods,
